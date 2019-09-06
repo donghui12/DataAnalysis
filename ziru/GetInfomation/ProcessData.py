@@ -61,6 +61,12 @@ def processCode(codeUrl):
 
 
 def processRoomData(roomData):
+    """
+    通过room中的price_location,得知价格数字在验证码的位置
+    然后通过验证码和pageNum的对应找到房间对应的验证码,然后获取价格
+    :param roomData:
+    :return:
+    """
     resultRoomData = []
     for room in roomData:
         price = []
@@ -76,10 +82,16 @@ def processRoomData(roomData):
 
 
 if __name__=="__main__":
-    # numCode = loadData('../JsonData/num.json')
-    # pageNum = loadData('pageNum.json')
-    # processPageCode(pageNum)
+    """
+    这一部分是对{pageNum:CodeUrl } 进行处理, 识别CodeUrl的验证码顺序
+    返回一个dict类型 {'1':验证码1, '2': 验证码2, ...}
+    numCode = loadData('../JsonData/num.json')
+    pageNum = loadData('pageNum.json')
+    processPageCode(pageNum) 
+    """
 
+    # 这一部分是对roomData进行处理, 添加price 进room中的
+    # 具体方法看代码
     CodeNum = loadData('pageNumCode.json')
     roomData = loadData('resultData.json')
     resultRoomData = processRoomData(roomData)

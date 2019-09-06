@@ -23,4 +23,18 @@
     
     该文件执行顺序:
     GetRoomUrl --> GetInformation
+# ProcessData.py:
+    对数据进行基本处理
+    processRoomData(roomData):
+        通过room中的price_location,得知价格数字在验证码的位置
+        然后通过验证码和pageNum的对应找到房间对应的验证码,然后获取价格
+    
+    processCode(codeUrl):
+        类似于OCR,传入一个验证码URL,返回该验证码识别结果
+        CodeUrl_1 --> CodeNum_1
+        
+    processPageCode(pageCode):
+        处理pageNum文件
+        从[ {pageNum_1: CodeUrl_1},{pageNum_2: CodeUrl_2},{pageNum_3: CodeUrl_3},...]
+        变成{pageNum_1: CodeNum_1,pageNum_2: CodeNum_2,pageNum_3: CodeNum_3,...}    
         
