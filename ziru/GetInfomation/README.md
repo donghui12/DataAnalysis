@@ -13,7 +13,7 @@
         
     GetInformation():
         主要运行文件
-        从Queue中获取信息
+        从Queue中p获取信息
         执行parseRoomPage函数
        
     parseRoomPage(room_html, roomUid):
