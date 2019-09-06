@@ -7,6 +7,7 @@ from fake_useragent import UserAgent
 ua = UserAgent()
 headers = {'User-Agent': ua.random}
 
+
 def getCon(url):
     try:
         resp = requests.get(url, headers=headers)
@@ -49,8 +50,18 @@ def getImg(ImageCodes, imgQueue):
         print('成功获取')
 
 
+def main():
+    base_url = 'http://sz.ziroom.com/z/p{}/'
+    imgQueue = Queue()
+    for i in range(100):
+        final_url = base_url.format(str(i))
+        print(final_url)
+        text = getCon(final_url)
+        ImageCodes = parse(text, imgQueue)
+        getImg(ImageCodes, imgQueue)
 
 
+"""
 if __name__ == "__main__":
     base_url = 'http://sz.ziroom.com/z/p{}/'
     imgQueue = Queue()
@@ -60,3 +71,4 @@ if __name__ == "__main__":
         text = getCon(final_url)
         ImageCodes = parse(text, imgQueue)
         getImg(ImageCodes, imgQueue)
+"""
