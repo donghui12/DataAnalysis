@@ -102,7 +102,7 @@ def predict(data, real_price):
     testx = np.hstack([testx, np.ones((testx.shape[0], 1))])
     price = testx.dot(theta)
     print('predit value is %f ,the real value is %f ' % (price, real_price))
-
+    return price, real_price
 
 if __name__ == '__main__':
     X_label, Y_label = readData()
@@ -129,5 +129,11 @@ if __name__ == '__main__':
     print('Theta found by gradient descent', theta)
 
     X_label_test, Y_label_test = readData('X_label_test.csv')
+    rate = []
     for i, j in zip(X_label_test, Y_label_test):
-        predict(i, j)
+        price, real_price = predict(i, j)
+        if (abs(price-real_price) / real_price)[0][0] < 0.10:
+            rate.append(1)
+        else:
+            rate.append(0)
+    print('the rate is {}'.format(sum(rate)/len(rate)))
